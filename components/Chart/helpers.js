@@ -1,16 +1,10 @@
 import min from "lodash/min";
 import max from "lodash/max";
+import mapValues from "lodash/mapValues";
 
 export const parseChartData = chart => {
   let xValues = [];
   const yLines = {};
-  const result = {
-    lines: {},
-    minX: 0,
-    maxX: 0,
-    minY: 0,
-    maxY: 0
-  };
 
   chart.columns.forEach(column => {
     const [name, ...values] = column;
@@ -24,39 +18,71 @@ export const parseChartData = chart => {
     }
   });
 
-  result.minX = min(xValues);
-  result.maxX = max(xValues);
+  const minX = min(xValues);
+  const maxX = max(xValues);
 
-  Object.keys(yLines).forEach(yLineName => {
-    const yLine = yLines[yLineName];
+  const { minY, maxY } = Object.values(yLines).reduce(
+    (minimums, yLine) => {
+      const lineMin = min(yLine);
+      const lineMax = max(yLine);
 
-    const lineMin = min(yLine);
-    const lineMax = max(yLine);
+      if (lineMin < minimums.minY) {
+        minimums.minY = lineMin;
+      }
 
-    if (lineMin < result.minY) {
-      result.minY = lineMin;
+      if (lineMax > minimums.maxY) {
+        minimums.maxY = lineMax;
+      }
+
+      return minimums;
+    },
+    {
+      minY: 0,
+      maxY: 0
     }
+  );
 
-    if (lineMax > result.maxY) {
-      result.maxY = lineMax;
-    }
+  const optimizeScaleX = getOptimizeScale(maxX - minX);
+  const optimizeScaleY = getOptimizeScale(maxY - minY);
 
-    const points = yLine.map((yValue, index) => ({
-      x: xValues[index],
-      y: yValue
-    }));
+  const lines = mapValues(
+    yLines,
+    (yLine, yLineName) => {
+      const points = yLine.map((y, index) => ({
+        x: xValues[index],
+        y: y,
+        viewX: optimizeScaleX(xValues[index] - minX),
+        viewY: optimizeScaleY(maxY - y)
+      }));
 
-    result.lines[yLineName] = {
-      points,
-      color: chart.colors[yLineName]
-    };
-  });
+      return {
+        points,
+        color: chart.colors[yLineName]
+      };
+    },
+    {}
+  );
 
-  return result;
+  const minViewX = 0;
+  const maxViewX = optimizeScaleX(maxX - minX);
+  const minViewY = 0;
+  const maxViewY = optimizeScaleY(maxY - minY);
+
+  return {
+    minX,
+    maxX,
+    minY,
+    maxY,
+    lines,
+    minViewX,
+    maxViewX,
+    minViewY,
+    maxViewY
+  };
 };
 
-export const getOptimizeScale = maxValue => {
-  const order = Math.ceil(Math.log10(maxValue));
+export const getOptimizeScale = valueRange => {
+  const order = Math.ceil(Math.log10(valueRange));
 
   if (order <= 3) return value => value;
 
@@ -65,16 +91,10 @@ export const getOptimizeScale = maxValue => {
   return value => value / Math.pow(10, shiftOrder);
 };
 
-export const getScaleValue = (
-  actualMin,
-  actualMax,
-  targetMin,
-  targetMax
-) => value => {
-  const actualRange = actualMax - actualMin;
-  const targetRange = targetMax - targetMin;
+export const getSvgCoords = (evt, svg) => {
+  const helpfulPoint = svg.createSVGPoint();
 
-  const scale = targetRange / actualRange;
-
-  return (value - actualMin) * scale + targetMin;
+  helpfulPoint.x = evt.clientX;
+  helpfulPoint.y = evt.clientY;
+  return helpfulPoint.matrixTransform(svg.getScreenCTM().inverse());
 };
