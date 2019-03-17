@@ -6,10 +6,8 @@ export class ChartWidget extends Component {
     super(props)
 
     this.state = {
-      x: 0,
-      y: 0,
-      width: 400,
-      height: 400
+      x: props.chartViewData.minX,
+      width: (props.chartViewData.maxX - props.chartViewData.minX) / 6,
     }
 
     this._handleScroll = (evt) => {
@@ -24,12 +22,12 @@ export class ChartWidget extends Component {
       <div>
         <input
           type="range"
-          min="1"
-          max="1100"
+          min={chartViewData.minX}
+          max={chartViewData.maxX - state.width}
           value={state.x}
           onInput={this._handleScroll}
         />
-        <Chart chartViewData={chartViewData} height={400} width={1500} viewport={state}/>
+        <Chart chartViewData={chartViewData} height={400} width={400} viewport={state}/>
       </div>
     );
   }

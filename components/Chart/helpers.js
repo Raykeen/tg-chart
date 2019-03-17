@@ -55,6 +55,16 @@ export const parseChartData = chart => {
   return result;
 };
 
+export const getOptimizeScale = maxValue => {
+  const order = Math.ceil(Math.log10(maxValue));
+
+  if (order <= 3) return value => value;
+
+  const shiftOrder = order - 3;
+
+  return value => value / Math.pow(10, shiftOrder);
+};
+
 export const getScaleValue = (
   actualMin,
   actualMax,
