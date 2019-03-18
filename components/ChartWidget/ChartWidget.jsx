@@ -27,6 +27,7 @@ export class ChartWidget extends Component {
           value={state.x}
           onInput={this._handleScroll}
         />
+        <h3>Followers</h3>
         <Chart chartViewData={chartViewData} height={400} width={400} viewport={state}/>
       </div>
     );

@@ -530,10 +530,6 @@
     js-levenshtein "^1.1.3"
     semver "^5.3.0"
 
-"@babel/preset-stage-0@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/preset-stage-0/-/preset-stage-0-7.0.0.tgz#999aaec79ee8f0a763042c68c06539c97c6e0646"
-
 "@babel/runtime@^7.0.0":
   version "7.3.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.4.tgz#73d12ba819e365fcf7fd152aed56d6df97d21c83"
@@ -776,6 +772,17 @@ asynckit@^0.4.0:
 atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
+
+autoprefixer@^9.5.0:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.5.0.tgz#7e51d0355c11596e6cf9a0afc9a44e86d1596c70"
+  dependencies:
+    browserslist "^4.4.2"
+    caniuse-lite "^1.0.30000947"
+    normalize-range "^0.1.2"
+    num2fraction "^1.2.2"
+    postcss "^7.0.14"
+    postcss-value-parser "^3.3.1"
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -1304,6 +1311,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+big.js@^3.1.3:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
+
 binary-extensions@^1.0.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.0.tgz#9523e001306a32444b907423f1de2164222f6ab1"
@@ -1427,6 +1438,14 @@ browserslist@^4.0.0, browserslist@^4.1.0, browserslist@^4.3.4:
     electron-to-chromium "^1.3.113"
     node-releases "^1.1.8"
 
+browserslist@^4.4.2:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.5.1.tgz#2226cada1947b33f4cfcf7b608dcb519b6128106"
+  dependencies:
+    caniuse-lite "^1.0.30000949"
+    electron-to-chromium "^1.3.116"
+    node-releases "^1.1.11"
+
 buffer-equal@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal/-/buffer-equal-0.0.1.tgz#91bc74b11ea405bc916bc6aa908faafa5b4aac4b"
@@ -1498,7 +1517,7 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000939:
   version "1.0.30000945"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000945.tgz#d51e3750416dd05126d5ac94a9c57d1c26c6fd21"
 
-caniuse-lite@^1.0.30000844:
+caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000947, caniuse-lite@^1.0.30000949:
   version "1.0.30000950"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000950.tgz#8c559d66e332b34e919d1086cc6d29c1948856ae"
 
@@ -2119,7 +2138,7 @@ electron-to-chromium@^1.3.113:
   version "1.3.115"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.115.tgz#fdaa56c19b9f7386dbf29abc1cc632ff5468ff3b"
 
-electron-to-chromium@^1.3.47:
+electron-to-chromium@^1.3.116, electron-to-chromium@^1.3.47:
   version "1.3.116"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.116.tgz#1dbfee6a592a0c14ade77dbdfe54fef86387d702"
 
@@ -2134,6 +2153,10 @@ elliptic@^6.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
+
+emojis-list@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
 
 encodeurl@~1.0.2:
   version "1.0.2"
@@ -2391,6 +2414,12 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
+
+generic-names@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/generic-names/-/generic-names-1.0.3.tgz#2d786a121aee508876796939e8e3bff836c20917"
+  dependencies:
+    loader-utils "^0.2.16"
 
 get-port@^3.2.0:
   version "3.2.0"
@@ -2978,7 +3007,7 @@ json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
-json5@^0.5.1:
+json5@^0.5.0, json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
 
@@ -3033,6 +3062,19 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+loader-utils@^0.2.16:
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
+  dependencies:
+    big.js "^3.1.3"
+    emojis-list "^2.0.0"
+    json5 "^0.5.0"
+    object-assign "^4.0.1"
+
+lodash.camelcase@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
 
 lodash.clone@^4.5.0:
   version "4.5.0"
@@ -3297,6 +3339,12 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
+node-releases@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.11.tgz#9a0841a4b0d92b7d5141ed179e764f42ad22724a"
+  dependencies:
+    semver "^5.3.0"
+
 node-releases@^1.1.8:
   version "1.1.10"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.10.tgz#5dbeb6bc7f4e9c85b899e2e7adcc0635c9b2adf7"
@@ -3323,6 +3371,10 @@ normalize-path@^2.1.1:
 normalize-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
+
+normalize-range@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
 
 normalize-url@^3.0.0:
   version "3.3.0"
@@ -3353,6 +3405,10 @@ nth-check@^1.0.2:
   resolved "https://registry.yarnpkg.com/nth-check/-/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
   dependencies:
     boolbase "~1.0.0"
+
+num2fraction@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
@@ -3758,6 +3814,16 @@ postcss-modules-values@1.3.0:
     icss-replace-symbols "^1.1.0"
     postcss "^6.0.1"
 
+postcss-modules@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/postcss-modules/-/postcss-modules-1.4.1.tgz#8aa35bd3461db67e27377a7ce770d77b654a84ef"
+  dependencies:
+    css-modules-loader-core "^1.1.0"
+    generic-names "^1.0.3"
+    lodash.camelcase "^4.3.0"
+    postcss "^7.0.1"
+    string-hash "^1.1.1"
+
 postcss-normalize-charset@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/postcss-normalize-charset/-/postcss-normalize-charset-4.0.1.tgz#8b35add3aee83a136b0471e0d59be58a50285dd4"
@@ -3909,7 +3975,7 @@ postcss@^6.0.1, postcss@^6.0.14:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.5:
+postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.5:
   version "7.0.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.14.tgz#4527ed6b1ca0d82c53ce5ec1a2041c2346bbd6e5"
   dependencies:
@@ -4551,6 +4617,10 @@ stream-http@^2.7.2:
     readable-stream "^2.3.6"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
+
+string-hash@^1.1.1:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
 
 string-width@^1.0.1:
   version "1.0.2"
