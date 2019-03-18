@@ -1,6 +1,8 @@
 import { h, Component } from 'preact'
 import mapValues from 'lodash/mapValues'
 import { getSvgCoords } from './helpers'
+import { Polylines } from './Polylines'
+import { findNearestPoints } from './helpers'
 
 export class Chart extends Component {
   constructor (props) {
@@ -16,27 +18,12 @@ export class Chart extends Component {
     this.setSvg = el => (this.svg = el)
 
     this._handleMouseMove = evt => {
-      const {x: mouseX} = getSvgCoords(evt, this.svg)
-
       const {
         chartViewData: {lines},
       } = this.props
 
-      const selectedPoints = mapValues(lines, ({points, color}) => {
-        const {viewX, viewY} =
-        points.find(({viewX}, index) => {
-          const prevX =
-            points[index - 1] !== undefined ? points[index - 1].viewX : null
-          const nextX =
-            points[index + 1] !== undefined ? points[index + 1].viewX : null
-          const boundStart = (viewX - (prevX || 2 * viewX - nextX)) / 2
-          const boundEnd = (viewX + (nextX || 2 * viewX + prevX)) / 2
-
-          return mouseX > boundStart && mouseX < boundEnd
-        }) || {}
-
-        return viewX !== undefined ? {viewX, viewY, color} : null
-      })
+      const {x: mouseX} = getSvgCoords(evt, this.svg)
+      const selectedPoints = findNearestPoints(lines, mouseX)
 
       this.setState({selectedPoints})
     }
@@ -104,25 +91,4 @@ export class Chart extends Component {
       </svg>
     )
   }
-}
-
-export const Polylines = ({lines}) => {
-  const polylines = Object.values(lines).map(({points, color}) => {
-    const pointsStr = points.map(({viewX, viewY}) => `${viewX},${viewY}`).
-      join(' ')
-
-    return (
-      <polyline
-        points={pointsStr}
-        fill="none"
-        stroke={color}
-        stroke-width={2}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        vector-effect="non-scaling-stroke"
-      />
-    )
-  })
-
-  return <g>{polylines}</g>
 }

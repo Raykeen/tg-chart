@@ -1,4 +1,4 @@
-import { parseChartData } from "./components/Chart/helpers";
+import { parseChartData } from "./utils/parser";
 import { ChartWidget } from "./components/ChartWidget";
 import { render, h } from "preact";
 
